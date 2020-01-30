@@ -1,0 +1,12 @@
+def generate_ip_list(ip_mask):
+    ip_list = []
+    for i in range(len(ip_mask)):
+    	ip_mask[i] = ip_mask[i].split("/")
+    	net = ip_mask[i][0]
+    	cidr = int(ip_mask[i][1])
+    	net = net.split(".")
+    	#ip range ip/cidr
+    	net_range = 32 - cidr
+     	for i in range(int(net[3]),int(net[3])+2**net_range):
+        	ip_list.append(net[0]+"."+net[1]+"."+net[2]+"."+str(i))
+    return ip_list
